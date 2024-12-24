@@ -5,6 +5,7 @@ const Carousel: React.FC = () => {
     "Not sure what to cook tonight?",
     "Finding it hard to plan your meals?",
     "Got last-minute plans and no time to cook?",
+    "Need a creative spark?",
     "Craving a new recipe to try?",
   ];
 
@@ -31,7 +32,7 @@ const Carousel: React.FC = () => {
             }}
             className="h-16 md:h-20 "
           >
-            <h1 className="font-light text-xl md:text-3xl text-yellow-300">
+            <h1 className="text-xl md:text-3xl text-yellow-300 font-bold">
               {slide}
             </h1>
           </li>

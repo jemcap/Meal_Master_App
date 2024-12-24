@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const threshold = 50;
+      const threshold = 10;
       if (window.scrollY > threshold) {
         setReachedThreshold(true);
       } else {
@@ -24,8 +24,8 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`blur-backdrop-filter fixed top-0 z-20 w-full bg-white bg-clip-padding transition ${
-        reachedThreshold ? "bg-opacity-80 shadow-xl" : "bg-opacity-100"
+      className={`backdrop-blur-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
+        reachedThreshold ? "bg-opacity-70 shadow-2xl" : "bg-opacity-100"
       }`}
     >
       <div className="align-elements ">

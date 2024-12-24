@@ -15,7 +15,7 @@ const Intro: React.FC = () => {
         <div className="absolute inset-0 bg-black bg-opacity-65 z-10"></div>
 
         <div className="relative flex justify-center items-center min-h-[64vh] w-full text-white text-center z-20">
-          <div className="h-auto w-11/12 md:gap-2 flex flex-col">
+          <div className="h-auto w-11/12 flex flex-col">
             <Carousel />
             <h3 className="font-light text-xl md:text-4xl">
               Whatever it is, we've got your back!
