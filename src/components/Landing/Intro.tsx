@@ -1,4 +1,5 @@
 import React from "react";
+import Carousel from "./Carousel";
 
 const Intro: React.FC = () => {
   return (
@@ -11,11 +12,15 @@ const Intro: React.FC = () => {
           top: "5rem",
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-55 z-10"></div>
+        <div className="absolute inset-0 bg-black bg-opacity-65 z-10"></div>
 
-        <div className="relative flex justify-center items-center min-h-[80vh] w-full text-white text-center z-20">
-          <div className="h-auto w-11/12 sm:w-10/12 md:w-8/12 lg:w-6/12">
-            <h1 className="text-4xl font-bold">Welcome to Meal Master</h1>
+        <div className="relative flex justify-center items-center min-h-[64vh] w-full text-white text-center z-20">
+          <div className="h-auto w-11/12 md:gap-2 flex flex-col">
+            <Carousel />
+            <h3 className="font-light text-xl md:text-4xl">
+              Whatever it is, we've got your back!
+            </h3>
+            <h1 className="text-7xl md:text-9xl font-bold">Meal Master</h1>
             <p className="text-lg">
               The best place to find your favorite meals
             </p>
