@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 import { Logo } from "../../utils/images";
 
 const Navbar: React.FC = () => {
@@ -43,9 +45,7 @@ const Navbar: React.FC = () => {
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <a href="#home" className="text-black hover:text-teal-200">
-              My account
-            </a>
+            <Link to="/register">My account</Link>
           </div>
 
           <div className="md:hidden">
@@ -90,12 +90,12 @@ const Navbar: React.FC = () => {
             <a href="#about" className="block text-black hover:text-teal-200">
               About
             </a>
-            <a
-              href="#services"
+            <Link
+              to="/register"
               className="block text-black hover:text-teal-200"
             >
               My account
-            </a>
+            </Link>
           </div>
         </div>
       )}

@@ -4,7 +4,7 @@ const Carousel: React.FC = () => {
   const slides = [
     "Not sure what to cook tonight?",
     "Finding it hard to plan your meals?",
-    "Got last-minute plans and no time to cook?",
+    "Got last-minute plans and running out of time?",
     "Need a creative spark?",
     "Craving a new recipe to try?",
   ];
