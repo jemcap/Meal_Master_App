@@ -1,5 +1,7 @@
 import React from "react";
 import Carousel from "./Carousel";
+import PrimaryButton from "../Button/PrimaryButton";
+import { Link } from "react-router-dom";
 
 const Intro: React.FC = () => {
   return (
@@ -24,6 +26,11 @@ const Intro: React.FC = () => {
             <p className="text-lg">
               The best place to find your favorite meals
             </p>
+            <div className="mt-8">
+              <Link to="/menu">
+                <PrimaryButton text="Get Started" />
+              </Link>
+            </div>
           </div>
         </div>
       </div>

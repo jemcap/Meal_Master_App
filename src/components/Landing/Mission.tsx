@@ -24,7 +24,7 @@ const Mission: React.FC = () => {
           </span>
           <div className="flex flex-col items-start justify-center gap-8 xl:max-w-2xl">
             <h2 className="text-3xl font-black tracking-tight md:text-5xl">
-              Healthy &amp; delicious meal prep for fat &amp; weight loss
+              Healthy &amp; delicious meal prep for your needs.
             </h2>
             <div className="flex w-full md:hidden">
               <img
@@ -36,9 +36,19 @@ const Mission: React.FC = () => {
             <div className="text-balance flex flex-col text-lg">
               <ul className="mt-36 flex list-inside list-disc flex-col gap-4 font-light leading-normal tracking-tight md:mt-0">
                 <li>
-                  <span className="font-medium">High protein:</span> Protein may
-                  help support weight loss by regulating satiety hormones and
-                  helping you to feel fuller for longer.
+                  <span className="font-medium">Cuisine preferences:</span>{" "}
+                  Protein may help support weight loss by regulating satiety
+                  hormones and helping you to feel fuller for longer.
+                </li>
+                <li>
+                  <span className="font-medium">Dietary requirements:</span>{" "}
+                  Protein may help support weight loss by regulating satiety
+                  hormones and helping you to feel fuller for longer.
+                </li>
+                <li>
+                  <span className="font-medium">Set boundaries:</span> Protein
+                  may help support weight loss by regulating satiety hormones
+                  and helping you to feel fuller for longer.
                 </li>
               </ul>
             </div>

@@ -33,7 +33,9 @@ const Navbar: React.FC = () => {
       <div className="align-elements ">
         <div className="flex justify-between items-center h-full py-2">
           <div className="flex-shrink-0 text-black text-2xl font-bold">
-            <img src={Logo} alt="Meal Master Logo" width={50} />
+            <Link to="/">
+              <img src={Logo} alt="Meal Master Logo" width={50} />
+            </Link>
           </div>
           <div className="hidden md:flex space-x-6">
             <a href="#home" className="text-black hover:text-teal-200">
