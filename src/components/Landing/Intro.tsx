@@ -27,7 +27,7 @@ const Intro: React.FC = () => {
               The best place to find your favorite meals
             </p>
             <div className="mt-8">
-              <Link to="/menu">
+              <Link to="/recipes">
                 <PrimaryButton text="Get Started" />
               </Link>
             </div>
