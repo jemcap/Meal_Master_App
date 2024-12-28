@@ -1,6 +1,6 @@
 import React from "react";
 
-const Menu: React.FC = () => {
+const Recipes: React.FC = () => {
   return (
     <div>
       <div>
@@ -15,4 +15,4 @@ const Menu: React.FC = () => {
   );
 };
 
-export default Menu;
+export default Recipes;

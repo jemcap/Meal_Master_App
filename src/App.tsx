@@ -1,18 +1,23 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./routes/Home";
-import Layout from "./components/Layout";
-import SignUp from "./routes/SignUp";
-import Login from "./routes/Login";
-import Menu from "./routes/Menu";
+import {
+  Home,
+  PageLayout,
+  SignUp,
+  Login,
+  Recipes,
+  Error,
+  SingleRecipe,
+} from "./pages";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<PageLayout />} errorElement={<Error />}>
           <Route index element={<Home />} />
-          <Route path="/menu" element={<Menu />} />
+          <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipe/:id" element={<SingleRecipe />} />
         </Route>
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
