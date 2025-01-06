@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import Navlinks from "./Navlinks";
 
 import { Logo } from "../../utils/images";
 
@@ -33,21 +34,16 @@ const Navbar: React.FC = () => {
       <div className="align-elements ">
         <div className="flex justify-between items-center h-full py-2">
           <div className="flex-shrink-0 text-black text-2xl font-bold">
-            <Link to="/">
+            <NavLink to="/">
               <img src={Logo} alt="Meal Master Logo" width={50} />
-            </Link>
+            </NavLink>
           </div>
           <div className="hidden md:flex space-x-6">
-            <a href="#home" className="text-black hover:text-teal-200">
-              Our menu
-            </a>
-            <a href="#about" className="text-black hover:text-teal-200">
-              About
-            </a>
+            <Navlinks />
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <Link to="/register">My account</Link>
+            <NavLink to="/register">My account</NavLink>
           </div>
 
           <div className="md:hidden">
@@ -86,18 +82,13 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="md:hidden">
           <div className="space-y-2 px-2 pt-2 pb-3">
-            <a href="#home" className="block text-black hover:text-teal-200">
-              Our menu
-            </a>
-            <a href="#about" className="block text-black hover:text-teal-200">
-              About
-            </a>
-            <Link
+            <Navlinks />
+            <NavLink
               to="/register"
               className="block text-black hover:text-teal-200"
             >
               My account
-            </Link>
+            </NavLink>
           </div>
         </div>
       )}
