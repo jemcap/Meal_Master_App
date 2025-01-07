@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import RecipeSearch from "../components/Form/RecipeSearch";
 import RecipesContainer from "../components/Recipes/RecipesContainer";
+import { useRecipes } from "../context/recipesContext";
 
 const Recipes: React.FC = () => {
-  const [recipes, setRecipes] = useState([]);
-
+  const { recipes } = useRecipes();
   return (
     <div className="mt-32 align-elements">
-      <RecipeSearch setRecipes={setRecipes} />
+      <RecipeSearch />
       {recipes.length === 0 ? (
         <p className="text-center text-gray-500">
-          Search for recipes to display results.
+          x Search for recipes to display results.
         </p>
       ) : (
         <RecipesContainer recipes={recipes} />

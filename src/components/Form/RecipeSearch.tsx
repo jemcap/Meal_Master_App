@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { fetchRecipes } from "../../utils";
+import { useRecipes } from "../../context/recipesContext";
 
-type RecipeSearchProps = {
-  setRecipes: React.Dispatch<React.SetStateAction<never[]>>;
-};
-
-const RecipeSearch: React.FC<RecipeSearchProps> = ({ setRecipes }) => {
+const RecipeSearch: React.FC = () => {
   const [query, setQuery] = useState("");
   const [mealType, setMealType] = useState("");
+  const { setRecipes } = useRecipes();
 
   const handleSearch = async () => {
     try {
