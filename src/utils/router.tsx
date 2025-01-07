@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import { fetchRecipes } from ".";
 
 import {
   Home,
