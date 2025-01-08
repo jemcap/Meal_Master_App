@@ -7,24 +7,27 @@ const RecipeSearch: React.FC = () => {
   const [mealType, setMealType] = useState("");
   const [diet, setDiet] = useState("");
   const [dishType, setDishType] = useState("");
-  const { setRecipes } = useRecipes();
+
+  const { setRecipes, setNextLink } = useRecipes();
 
   const handleSearch = async () => {
     try {
       const response = await fetchRecipes(query, mealType, diet, dishType);
       console.log(response);
       setRecipes(response.hits);
+      setNextLink(response._links?.next?.href || null);
     } catch (error) {
       console.error(error.message);
     }
   };
   return (
-    <div className="flex gap-10">
+    <div className="flex gap-10 justify-between">
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder={!query ? "Search for recipes" : query}
+        className="border-2"
       />
       <select
         value={mealType}
@@ -37,7 +40,11 @@ const RecipeSearch: React.FC = () => {
         <option value="dinner">Dinner</option>
         <option value="teatime">Teatime</option>
       </select>
-      <select value={diet} onChange={(e) => setDiet(e.target.value)}>
+      <select
+        value={diet}
+        onChange={(e) => setDiet(e.target.value)}
+        className="border-2"
+      >
         <option value="">Please select a diet...</option>
         <option value="balanced">Balanced</option>
         <option value="high-protein">High Protein</option>
@@ -45,7 +52,11 @@ const RecipeSearch: React.FC = () => {
         <option value="low-fat">Low Fat</option>
         <option value="low-sodium">Low Sodium</option>
       </select>
-      <select value={dishType} onChange={(e) => setDishType(e.target.value)}>
+      <select
+        value={dishType}
+        onChange={(e) => setDishType(e.target.value)}
+        className="border-2"
+      >
         <option value="">Please select a dish type...</option>
         <option value="biscuits-and-cookies">Biscuits and cookies</option>
         <option value="bread">Bread</option>
