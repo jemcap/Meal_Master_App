@@ -12,15 +12,18 @@ const fetchApi = axios.create({
     }
 })
 
-export const fetchRecipes = async (query: string, mealType: string) => {
+export const fetchRecipes = async (query: string, mealType: string, diet: string, dishType: string) => {
     try {
         const response = await fetchApi.get('', {
             params: {
                 type: "public",
                 q: query,
-                mealType: mealType
+                mealType: mealType,
+                diet: diet,
+                dishType: dishType
             }
         })
+        console.log(response)
         return response.data
     } catch (error) {
         console.error("Error fetching recipes", error.message)
