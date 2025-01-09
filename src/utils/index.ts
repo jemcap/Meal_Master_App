@@ -12,15 +12,18 @@ const fetchApi = axios.create({
     }
 })
 
-export const fetchRecipes = async (query: string, mealType: string, diet: string, dishType: string) => {
+export const fetchRecipes = async (query: string, mealType: string, diet: string, dishType: string, cuisineType: string, calories: number) => {
     try {
         const response = await fetchApi.get('', {
             params: {
                 type: "public",
+                random: true,
                 q: query,
                 mealType: mealType,
                 diet: diet,
-                dishType: dishType
+                dishType: dishType,
+                cuisineType: cuisineType,
+                calories: `0-${calories}`
             }
         })
         console.log(response)
