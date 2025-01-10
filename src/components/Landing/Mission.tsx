@@ -27,14 +27,10 @@ const Mission: React.FC = () => {
               Healthy &amp; delicious meal prep for your needs.
             </h2>
             <div className="flex w-full md:hidden">
-              <img
-                src="https://prepkitchen.co.uk/img/arrowblack.png"
-                alt="Arrow"
-                className="w-24 -rotate-180"
-              />
+              <img src={Salad} alt="" className=" max-w-80" />
             </div>
             <div className="text-balance flex flex-col text-lg">
-              <ul className="mt-36 flex list-inside list-disc flex-col gap-4 font-light leading-normal tracking-tight md:mt-0">
+              <ul className="flex list-inside list-disc flex-col gap-4 font-light leading-normal tracking-tight md:mt-0">
                 <li>
                   <span className="font-medium">Cuisine preferences:</span>{" "}
                   Protein may help support weight loss by regulating satiety

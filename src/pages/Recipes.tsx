@@ -41,7 +41,6 @@ const Recipes: React.FC = () => {
                 </button>
               </div>
             )}
-            {}
           </div>
         </>
       )}

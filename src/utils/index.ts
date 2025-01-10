@@ -12,22 +12,23 @@ const fetchApi = axios.create({
     }
 })
 
-export const fetchRecipes = async (query: string, mealType: string, diet: string, dishType: string, cuisineType: string, calories: number) => {
+export const fetchRecipes = async (query: string, mealType?: string, diet?: string, dishType?: string, cuisineType?: string, calories?: number) => {
     try {
-        const response = await fetchApi.get('', {
-            params: {
-                type: "public",
-                random: true,
-                q: query,
-                mealType: mealType,
-                diet: diet,
-                dishType: dishType,
-                cuisineType: cuisineType,
-                calories: `0-${calories}`
-            }
-        })
-        console.log(response)
-        return response.data
+        const params: any = {
+            type: "public",
+            random: true,
+            q: query,
+        };
+
+        if (mealType) params.mealType = mealType;
+        if (diet) params.diet = diet;
+        if (dishType) params.dishType = dishType;
+        if (cuisineType) params.cuisineType = cuisineType;
+        if (calories) params.calories = `0-${calories}`;
+
+        const response = await fetchApi.get('', { params });
+        console.log(response);
+        return response.data;
     } catch (error) {
         console.error("Error fetching recipes", error.message)
         throw new Error(error.message)
