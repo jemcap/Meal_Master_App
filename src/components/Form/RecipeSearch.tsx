@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { fetchRecipes } from "../../utils";
 import { useRecipes } from "../../context/recipesContext";
 import SubmitButton from "../Button/SubmitButton";
+import { toast } from "react-toastify";
 
 const RecipeSearch: React.FC = () => {
   const step = 100;
@@ -17,6 +18,11 @@ const RecipeSearch: React.FC = () => {
   const { setRecipes, setNextLink } = useRecipes();
 
   const handleSearch = async () => {
+    if (!mealType) {
+      toast.error("Meal type not selected");
+      return;
+    }
+
     try {
       const response = await fetchRecipes(
         query,
