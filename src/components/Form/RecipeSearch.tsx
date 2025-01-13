@@ -18,6 +18,10 @@ const RecipeSearch: React.FC = () => {
   const { setRecipes, setNextLink } = useRecipes();
 
   const handleSearch = async () => {
+    if (!query && !mealType && !diet && !dishType && !cuisineType) {
+      toast.error("Please input in the fields.");
+      return;
+    }
     try {
       const response = await fetchRecipes(
         query,
