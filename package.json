@@ -10,14 +10,18 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.5.0",
+    "@reduxjs/toolkit": "^2.8.2",
+    "@supabase/supabase-js": "^2.49.8",
+    "@tanstack/react-query": "^5.79.0",
+    "@tanstack/react-query-devtools": "^5.79.0",
     "axios": "^1.7.9",
     "firebase": "^11.1.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.1.1",
+    "react-router-dom": "^7.6.1",
     "react-toastify": "^11.0.2",
+    "supabase": "^2.23.4",
     "uuid": "^11.0.4"
   },
   "devDependencies": {
@@ -25,6 +29,7 @@
     "@tailwindcss/typography": "^0.5.15",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "autoprefixer": "^10.4.20",
     "eslint": "^9.17.0",

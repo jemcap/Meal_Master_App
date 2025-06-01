@@ -1,15 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { fetchRecipes } from ".";
 
 import {
   Home,
   About,
   PageLayout,
-  SignUp,
-  Login,
-  Recipes,
   Error,
-  SingleRecipe,
+  Pantry,
+  Planner
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -20,11 +17,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "/about", element: <About /> },
-      { path: "/recipes", element: <Recipes /> },
-      { path: "/recipes/:id", element: <SingleRecipe /> },
       { path: "/error", element: <Error /> },
+      { path: "/pantry", element: <Pantry /> },
+      { path: "/planner", element: <Planner /> },
     ],
   },
-  { path: "/register", element: <SignUp />, errorElement: <Error /> },
-  { path: "/login", element: <Login />, errorElement: <Error /> },
 ]);
