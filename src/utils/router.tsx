@@ -6,7 +6,9 @@ import {
   PageLayout,
   Error,
   Pantry,
-  Planner
+  Planner,
+  Login,
+  SignUp,
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -22,4 +24,6 @@ export const router = createBrowserRouter([
       { path: "/planner", element: <Planner /> },
     ],
   },
+  { path: "/login", element: <Login /> },
+  { path: "/register", element: <SignUp /> },
 ]);

@@ -2,9 +2,13 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Navlinks from "./Navlinks";
 
+import { useSelector } from "react-redux";
+import type { RootState } from "../../store/store";
+
 import { Logo } from "../../utils/images";
 
 const Navbar: React.FC = () => {
+  const user = useSelector<RootState>((state: any) => state.auth.user);
   const [isOpen, setIsOpen] = useState(false);
   const [reachedThreshold, setReachedThreshold] = useState(false);
 
@@ -41,10 +45,13 @@ const Navbar: React.FC = () => {
           <div className="hidden md:flex space-x-6">
             <Navlinks />
           </div>
-
-          <div className="hidden md:flex space-x-6">
-            <NavLink to="/register">My account</NavLink>
-          </div>
+          {user ? (
+            <span>Hi, {user.email}</span>
+          ) : (
+            <div className="hidden md:flex space-x-6">
+              <NavLink to="/login">Login</NavLink>
+            </div>
+          )}
 
           <div className="md:hidden">
             <button
