@@ -4,28 +4,25 @@ import UserFormInput from "./UserFormInput";
 import SubmitButton from "../Button/SubmitButton";
 
 import { useSelector, useDispatch } from "react-redux";
-import type { AppDispatch, RootState } from "../../store/store"
+import type { AppDispatch } from "../../store/store";
 import { loginUser } from "../../features/auth/authThunks";
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const userLoginError = useSelector<RootState>((state: any) => state.auth.error);
   const { loading, error } = useSelector((state: any) => state.auth);
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(loginUser({ email, password }))
-    if (!userLoginError) {
-      navigate("/")
-    }
-  }
+    const action = await dispatch(loginUser({ email, password }));
+    if (loginUser.fulfilled.match(action)) navigate("/");
+    return;
+  };
 
   return (
-   <section className="grid place-items-center h-screen">
+    <section className="grid place-items-center h-screen">
       <div className="card w-96 p-8 bg-base-100 shadow-lg flex flex-col gap-y-4 rounded-xl">
         <Link to="/" className="btn btn-sm btn-circle btn-outline">
           <svg
@@ -51,19 +48,22 @@ const LoginForm: React.FC = () => {
             type="email"
             name="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <UserFormInput
             label="password"
             type="password"
             name="password"
             value={password}
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           {error && <div className="text-red-500 text-center">{error}</div>}
           <div className="flex flex-col items-center justify-center gap-2">
             <div className="w-full flex flex-col mt-5 justify-center items-center">
-              <SubmitButton text={loading ? "Logging in..." : "Log In"} type="submit"/>
+              <SubmitButton
+                text={loading ? "Logging in..." : "Log In"}
+                type="submit"
+              />
             </div>
             <p className="text-center mt-5">
               Don't have an account?

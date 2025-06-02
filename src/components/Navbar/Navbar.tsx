@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Navlinks from "./Navlinks";
 
-import { useSelector } from "react-redux";
-import type { RootState } from "../../store/store";
+import { useSelector, useDispatch } from "react-redux";
+import type { AppDispatch } from "../../store/store";
+import { logoutUser } from "../../features/auth/authThunks";
 
 import { Logo } from "../../utils/images";
 
 const Navbar: React.FC = () => {
-  const user = useSelector<RootState>((state: any) => state.auth.user);
+  const user = useSelector((state: any) => state.auth.user);
+  const dispatch = useDispatch<AppDispatch>()
   const [isOpen, setIsOpen] = useState(false);
   const [reachedThreshold, setReachedThreshold] = useState(false);
 
@@ -29,6 +31,10 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    dispatch(logoutUser())
+  }
+
   return (
     <nav
       className={`backdrop-blur-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
@@ -46,7 +52,9 @@ const Navbar: React.FC = () => {
             <Navlinks />
           </div>
           {user ? (
-            <span>Hi, {user.email}</span>
+            <button onClick={handleLogout}>
+              <span>Hi, {user.email}</span>
+            </button>
           ) : (
             <div className="hidden md:flex space-x-6">
               <NavLink to="/login">Login</NavLink>
