@@ -23,7 +23,7 @@ const UserFormInput: React.FC<UserFormInputProps> = ({
         name={name}
         value={value}
         onChange={onChange}
-        className="border-2 rounded-md border-gray-300 p-2 focus:outline-none focus:border-blue-500"
+        className="border-2 rounded-md border-gray-300 p-2 focus:outline-hidden focus:border-blue-500"
       />
     </div>
   );

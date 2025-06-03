@@ -7,7 +7,7 @@ const Error: React.FC = () => {
   console.log(error);
   if ((error as any).status === 404) {
     return (
-      <main className="grid min-h-[100vh] place-items-center px-8">
+      <main className="grid min-h-screen place-items-center px-8">
         <div className="text-center">
           <p className="text-2xl font-bold">Oops...</p>
           <h1 className="text-9xl font-semibold text-primary">404</h1>
@@ -24,7 +24,7 @@ const Error: React.FC = () => {
     );
   }
   return (
-    <main className="grid min-h-[100vh] place-items-center px-8 ">
+    <main className="grid min-h-screen place-items-center px-8 ">
       <h4 className="text-center font-bold text-4xl">there was an error... </h4>
     </main>
   );

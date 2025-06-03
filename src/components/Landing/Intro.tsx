@@ -7,7 +7,7 @@ const Intro: React.FC = () => {
   return (
     <div className="w-full h-full overflow-hidden">
       <div
-        className="relative min-h-[80vh] bg-cover bg-[50%_50%] bg-no-repeat sm:bg-[90%_50%] md:pb-0"
+        className="relative min-h-[80vh] bg-cover bg-position-[50%_50%] bg-no-repeat sm:bg-position-[90%_50%] md:pb-0"
         style={{
           backgroundImage:
             "url('https://images.unsplash.com/photo-1627906295817-622535c6ee5a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",

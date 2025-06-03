@@ -37,13 +37,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`backdrop-blur-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
+      className={`backdrop-blur-xs fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
         reachedThreshold ? "bg-opacity-70 shadow-2xl" : "bg-opacity-100"
       }`}
     >
       <div className="align-elements ">
         <div className="flex justify-between items-center h-full py-2">
-          <div className="flex-shrink-0 text-black text-2xl font-bold">
+          <div className="shrink-0 text-black text-2xl font-bold">
             <NavLink to="/">
               <img src={Logo} alt="Meal Master Logo" width={50} />
             </NavLink>
@@ -64,7 +64,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-black focus:outline-none"
+              className="text-black focus:outline-hidden"
             >
               <svg
                 className="w-6 h-6"
