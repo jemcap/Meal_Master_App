@@ -8,7 +8,8 @@ import type { AppDispatch } from "../../store/store";
 import { loginUser } from "../../features/auth/authThunks";
 const LoginForm: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error } = useSelector((state: any) => state.auth);
+  const { user, loading, error } = useSelector((state: any) => state.auth);
+  console.log(user)
   const navigate = useNavigate();
 
   const [email, setEmail] = useState<string>("");
@@ -17,7 +18,9 @@ const LoginForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const action = await dispatch(loginUser({ email, password }));
-    if (loginUser.fulfilled.match(action)) navigate("/");
+    if (loginUser.fulfilled.match(action)) {
+      navigate("/");
+    }
     return;
   };
 

@@ -2,9 +2,15 @@ import useAuth from "../hooks/useAuth";
 import { usePantryItems } from "../hooks/usePantry";
 import AddPantryItemForm from "../components/pantry/AddPantryItemForm";
 
+import { useSelector } from "react-redux";
+
 const PantryPage = () => {
+  const reduxUser = useSelector((state: any) => state.auth.user);
+  console.log('Redux auth state:', reduxUser);
   const { userId } = useAuth();
   const { data, isLoading, error } = usePantryItems(userId || "");
+
+  console.log("Pantry items data:", data);
 
   if (!userId) return <p>Please log in to access your pantry.</p>;
   if (isLoading) return <p>Loading your pantry...</p>;

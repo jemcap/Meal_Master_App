@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const AddPantryItemForm = () => {
   const { userId } = useAuth();
-  const { mutate, isPending } = useAddPantryItem();
+  const { mutate: item, isPending } = useAddPantryItem();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,7 +29,7 @@ const AddPantryItemForm = () => {
       return;
     }
 
-    mutate({
+    item({
       ...formData,
       quantity: +formData.quantity,
       user_id: userId,

@@ -9,6 +9,7 @@ import {
   Planner,
   Login,
   SignUp,
+  Protected,
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -20,8 +21,14 @@ export const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "/about", element: <About /> },
       { path: "/error", element: <Error /> },
-      { path: "/pantry", element: <Pantry /> },
-      { path: "/planner", element: <Planner /> },
+      {
+        path: "/pantry",
+        element: <Pantry />,
+      },
+      {
+        path: "/planner",
+        element: <Planner />,
+      },
     ],
   },
   { path: "/login", element: <Login /> },
