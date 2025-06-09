@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Navlinks from "./Navlinks";
 
+import { FaRegUserCircle } from "react-icons/fa";
+
 import { useSelector, useDispatch } from "react-redux";
 import type { AppDispatch } from "../../store/store";
 import { logoutUser } from "../../features/auth/authThunks";
@@ -10,7 +12,7 @@ import { Logo } from "../../utils/images";
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: any) => state.auth.user);
-  const dispatch = useDispatch<AppDispatch>()
+  const dispatch = useDispatch<AppDispatch>();
   const [isOpen, setIsOpen] = useState(false);
   const [reachedThreshold, setReachedThreshold] = useState(false);
 
@@ -32,8 +34,8 @@ const Navbar: React.FC = () => {
   }, []);
 
   const handleLogout = () => {
-    dispatch(logoutUser())
-  }
+    dispatch(logoutUser());
+  };
 
   return (
     <nav
@@ -52,8 +54,8 @@ const Navbar: React.FC = () => {
             <Navlinks />
           </div>
           {user ? (
-            <button onClick={handleLogout}>
-              <span>Hi, {user.email}</span>
+            <button onClick={() => setIsOpen(!isOpen)} className="hidden md:flex">
+              <FaRegUserCircle className="text-4xl" />
             </button>
           ) : (
             <div className="hidden md:flex space-x-6">
@@ -95,15 +97,27 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="md:hidden">
-          <div className="space-y-2 px-2 pt-2 pb-3">
+        <div className="fixed top-16 right-0 md:w-96  bg-white shadow-lg flex justify-end z-50">
+          <div className="space-y-2 px-2 pt-2 pb-3 w-full">
             <Navlinks />
-            <NavLink
-              to="/register"
-              className="block text-black hover:text-teal-200"
-            >
-              My account
-            </NavLink>
+            {user ? (
+              <>
+          <NavLink
+            to="/register"
+            className="block text-black hover:text-teal-200"
+          >
+            My account
+          </NavLink>
+          <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <NavLink
+          to="/login"
+          className="block text-black hover:text-teal-200"
+              >
+          Login / Register
+              </NavLink>
+            )}
           </div>
         </div>
       )}

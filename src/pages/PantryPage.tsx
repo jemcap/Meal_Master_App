@@ -1,3 +1,15 @@
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 import useAuth from "../hooks/useAuth";
 import { usePantryItems } from "../hooks/usePantry";
 import AddPantryItemForm from "../components/pantry/AddPantryItemForm";
@@ -25,7 +37,9 @@ const PantryPage = () => {
   return (
     <div className="max-w-2xl mx-auto p-4 space-y-6 pt-32">
       <div>
-        <h1 className="text-3xl font-bold mb-4 text-center">Welcome to Your Pantry</h1>
+        <h1 className="text-3xl font-bold mb-4 text-center">
+          Welcome to Your Pantry
+        </h1>
         <p className="text-gray-600">
           Here you can manage your pantry items, add new items, and keep track
           of their expiry dates.
@@ -45,7 +59,15 @@ const PantryPage = () => {
           <p className="text-2xl font-bold">{data?.length || 0}</p>
         </div>
       </div>
-      <AddPantryItemForm />
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Add Pantry Item</Button>
+        </DialogTrigger>
+        <DialogContent>
+          <AddPantryItemForm />
+        </DialogContent>
+      </Dialog>
+
       <h1 className="text-2xl font-bold">Your Pantry</h1>
       <ul className="space-y-2">
         {data?.map((item) => (
