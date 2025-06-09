@@ -1,3 +1,4 @@
+import { differenceInDays, isBefore, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -24,6 +25,19 @@ const PantryPage = () => {
 
   console.log("Pantry items data:", data);
   console.log("Length of pantry items:", data?.length);
+
+  const today = new Date();
+
+  const expiringSoonCount = data?.filter((item) => {
+    const expiry = parseISO(item.expiry_date);
+    const daysDiff = differenceInDays(expiry, today);
+    return isBefore(today, expiry) && daysDiff <= 7 && daysDiff >= 0;
+  }).length;
+
+  const expiredCount = data?.filter((item) => {
+    const expiry = parseISO(item.expiry_date);
+    return isBefore(expiry, today);
+  }).length;
 
   if (!userId)
     return (
@@ -52,11 +66,11 @@ const PantryPage = () => {
         </div>
         <div className="border-2 border-gray-300 p-4 rounded-lg flex flex-col items-center">
           <h3 className="text-lg font-semibold">Expiring Soon</h3>
-          <p className="text-2xl font-bold">{data?.length || 0}</p>
+          <p className="text-2xl font-bold">{expiringSoonCount || 0}</p>
         </div>
         <div className="border-2 border-gray-300 p-4 rounded-lg flex flex-col items-center">
           <h3 className="text-lg font-semibold">Expired</h3>
-          <p className="text-2xl font-bold">{data?.length || 0}</p>
+          <p className="text-2xl font-bold">{expiredCount || 0}</p>
         </div>
       </div>
       <Dialog>

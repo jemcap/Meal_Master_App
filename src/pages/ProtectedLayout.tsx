@@ -1,20 +1,18 @@
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { RootState } from "../store/store";
 
-const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
-  const user = useSelector((state: RootState) => state.auth.user);
-  console.log("ProtectedLayout user:", user);
-  const navigate = useNavigate();
+const ProtectedLayout = () => {
+  const { user, loading } = useSelector((state: RootState) => state.auth);
+  console.log(user)
+  if (loading) return <div>Loading...</div>;
+  if (!user) return <Navigate to="/login" replace />;
 
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, navigate]);
-
-  return children;
+  return (
+    <main>
+      <Outlet />
+    </main>
+  );
 };
 
 export default ProtectedLayout;
