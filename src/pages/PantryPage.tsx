@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { differenceInDays, isBefore, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
 import {
@@ -18,6 +19,9 @@ import AddPantryItemForm from "../components/pantry/AddPantryItemForm";
 import { useSelector } from "react-redux";
 
 const PantryPage = () => {
+  const [expiryFilter, setExpiryFilter] = useState<
+    "all" | "expiring" | "expired"
+  >("all");
   const reduxUser = useSelector((state: any) => state.auth.user);
   console.log("Redux auth state:", reduxUser);
   const { userId } = useAuth();
@@ -25,8 +29,27 @@ const PantryPage = () => {
 
   console.log("Pantry items data:", data);
   console.log("Length of pantry items:", data?.length);
-
   const today = new Date();
+
+  const getFilteredByExpiry = (items: typeof data) => {
+    if (!items) return [];
+    if (expiryFilter === "expiring") {
+      return items.filter((item) => {
+        const expiry = parseISO(item.expiry_date);
+        const daysDiff = differenceInDays(expiry, today);
+        return isBefore(today, expiry) && daysDiff <= 7 && daysDiff >= 0;
+      });
+    }
+    if (expiryFilter === "expired") {
+      return items.filter((item) => {
+        const expiry = parseISO(item.expiry_date);
+        return isBefore(expiry, today);
+      });
+    }
+    return items;
+  };
+
+  const displayedData = getFilteredByExpiry(data);
 
   const expiringSoonCount = data?.filter((item) => {
     const expiry = parseISO(item.expiry_date);
@@ -39,13 +62,19 @@ const PantryPage = () => {
     return isBefore(expiry, today);
   }).length;
 
+  if (isLoading)
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>Loading pantry...</p>
+      </div>
+    );
+
   if (!userId)
     return (
       <div className="flex justify-center items-center h-screen">
         <p>Please log in to access your pantry.</p>
       </div>
     );
-  if (isLoading) return <p>Loading your pantry...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
   return (
@@ -60,18 +89,39 @@ const PantryPage = () => {
         </p>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div className="border-2 border-gray-300 p-4 rounded-lg flex flex-col items-center">
+        <button
+          onClick={() => setExpiryFilter("all")}
+          className={`border-2 p-4 rounded-lg flex flex-col items-center ${
+            expiryFilter === "all"
+              ? "border-blue-500 bg-blue-50"
+              : "border-gray-300"
+          }`}
+        >
           <h3 className="text-lg font-semibold">Total Items</h3>
           <p className="text-2xl font-bold">{data?.length || 0}</p>
-        </div>
-        <div className="border-2 border-gray-300 p-4 rounded-lg flex flex-col items-center">
+        </button>
+        <button
+          onClick={() => setExpiryFilter("expiring")}
+          className={`border-2 p-4 rounded-lg flex flex-col items-center ${
+            expiryFilter === "expiring"
+              ? "border-blue-500 bg-blue-50"
+              : "border-gray-300"
+          }`}
+        >
           <h3 className="text-lg font-semibold">Expiring Soon</h3>
           <p className="text-2xl font-bold">{expiringSoonCount || 0}</p>
-        </div>
-        <div className="border-2 border-gray-300 p-4 rounded-lg flex flex-col items-center">
+        </button>
+        <button
+          onClick={() => setExpiryFilter("expired")}
+          className={`border-2 p-4 rounded-lg flex flex-col items-center ${
+            expiryFilter === "expired"
+              ? "border-blue-500 bg-blue-50"
+              : "border-gray-300"
+          }`}
+        >
           <h3 className="text-lg font-semibold">Expired</h3>
           <p className="text-2xl font-bold">{expiredCount || 0}</p>
-        </div>
+        </button>
       </div>
       <Dialog>
         <DialogTrigger asChild>
@@ -84,7 +134,7 @@ const PantryPage = () => {
 
       <h1 className="text-2xl font-bold">Your Pantry</h1>
       <ul className="space-y-2">
-        {data?.map((item) => (
+        {displayedData?.map((item) => (
           <li
             key={item.id}
             className="p-2 border rounded-md flex justify-between"

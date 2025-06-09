@@ -46,3 +46,21 @@ export const useAddPantryItem = () => {
     },
   });
 };
+
+export const useDeletePantryItem = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id }: { id: string | number }) => {
+      const { error } = await supabase
+        .from("pantry_items")
+        .delete()
+        .eq("id", id);
+      if (error) throw error;
+      return id;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["pantryItems"] });
+    },
+  });
+};
