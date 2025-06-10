@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Intro: React.FC = () => {
   return (
-    <div className="w-full h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden mt-7">
       <div
         className="relative min-h-[80vh] bg-cover bg-no-repeat md:pb-0"
         style={{

@@ -60,7 +60,7 @@ export const useDeletePantryItem = () => {
       return id;
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["pantryItems"] });
+      queryClient.invalidateQueries({ queryKey: ["pantryItems"]});
     },
   });
 };

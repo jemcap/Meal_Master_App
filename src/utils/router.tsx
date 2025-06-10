@@ -9,6 +9,7 @@ import {
   Planner,
   Login,
   SignUp,
+  Meals,
   Protected,
 } from "../pages";
 
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "/planner",
         element: <Planner />,
+      },
+      {
+        path: "/meals",
+        element: <Meals />,
       },
     ],
   },

@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 const links = [
   { id: 1, url: "/about", text: "About" },
   { id: 2, url: "/planner", text: "Meal Planner" },
+  { id: 3, url: "/meals", text: "Cookbook" },
   
 ];
 

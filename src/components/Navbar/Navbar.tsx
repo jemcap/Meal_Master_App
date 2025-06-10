@@ -12,6 +12,7 @@ import { Logo } from "../../utils/images";
 
 const Navbar: React.FC = () => {
   const user = useSelector((state: any) => state.auth.user);
+  console.log(user)
   const dispatch = useDispatch<AppDispatch>();
   const [isOpen, setIsOpen] = useState(false);
   const [reachedThreshold, setReachedThreshold] = useState(false);
