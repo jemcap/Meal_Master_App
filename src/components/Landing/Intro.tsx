@@ -12,13 +12,13 @@ const Intro: React.FC = () => {
           backgroundImage:
             "url('https://images.unsplash.com/photo-1627906295817-622535c6ee5a?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
           backgroundPosition: "50% 50%",
-          top: "5rem",
+
         }}
       >
         <div className="absolute inset-0 bg-black/60 z-10"></div>
 
-        <div className="relative flex justify-center items-center min-h-[64vh] w-full text-white text-center z-20">
-          <div className="h-auto w-11/12 flex flex-col">
+        <div className="relative flex justify-center items-center min-h-[80vh] w-full text-white text-center z-20">
+          <div className="h-full w-11/12 flex flex-col">
             <Carousel />
             <h3 className="font-light text-xl md:text-4xl">
               Whatever it is, we've got your back!

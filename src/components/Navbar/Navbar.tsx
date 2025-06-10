@@ -39,29 +39,41 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`backdrop-blur-xs fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
+      className={`backdrop-blur-xs text-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
         reachedThreshold ? "bg-opacity-70 shadow-2xl" : "bg-opacity-100"
       }`}
     >
       <div className="align-elements ">
-        <div className="flex justify-between items-center h-full py-2">
+        <div className="flex justify-between items-center h-full py-1">
           <div className="shrink-0 text-black text-2xl font-bold">
             <NavLink to="/">
               <img src={Logo} alt="Meal Master Logo" width={50} />
             </NavLink>
           </div>
-          <div className="hidden md:flex space-x-6">
+          <div className="hidden md:flex space-x-6 ">
             <Navlinks />
           </div>
-          {user ? (
-            <button onClick={() => setIsOpen(!isOpen)} className="hidden md:flex">
-              <FaRegUserCircle className="text-4xl" />
-            </button>
-          ) : (
-            <div className="hidden md:flex space-x-6">
-              <NavLink to="/login">Login</NavLink>
-            </div>
-          )}
+          <div className="hidden md:flex">
+            {user ? (
+              <div id="user-info" className="flex flex-row space-x-2">
+                <NavLink
+                  to="/pantry"
+                  className="text-white hover:bg-orange-400  bg-orange-500 py-1 px-3 rounded-lg transition-all duration-300 hover:shadow-xl "
+                >
+                  My Pantry
+                </NavLink>
+                <button
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  <FaRegUserCircle className="text-2xl" />
+                </button>
+              </div>
+            ) : (
+              <div className="hidden md:flex space-x-6">
+                <NavLink to="/login">Login</NavLink>
+              </div>
+            )}
+          </div>
 
           <div className="md:hidden">
             <button
@@ -101,20 +113,20 @@ const Navbar: React.FC = () => {
           <div className="space-y-2 px-2 pt-2 pb-3 w-full">
             {user ? (
               <>
-          <NavLink
-            to="/pantry"
-            className="block text-black hover:text-orange-500"
-          >
-            My Pantry
-          </NavLink>
-          <button onClick={handleLogout}>Logout</button>
+                <NavLink
+                  to="/pantry"
+                  className="block text-black hover:text-orange-500"
+                >
+                  My Pantry
+                </NavLink>
+                <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <NavLink
-          to="/login"
-          className="block text-black hover:text-orange-500"
+                to="/login"
+                className="block text-black hover:text-orange-500"
               >
-          Login / Register
+                Login / Register
               </NavLink>
             )}
           </div>
