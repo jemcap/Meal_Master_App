@@ -1,16 +1,7 @@
 import { useState } from "react";
 import { differenceInDays, isBefore, parseISO } from "date-fns";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 import useAuth from "../hooks/useAuth";
 import { usePantryItems, useDeletePantryItem } from "../hooks/usePantry";
@@ -143,11 +134,88 @@ const PantryPage = () => {
                   <div>{item.name}</div>
 
                   <div className="text-xs text-gray-500 space-x-5 flex justify-between">
-                    <div className="space-x-5">
-                      <span>
-                        ({item.quantity} {item.unit})
+                    <div className="space-x-5 flex items-center">
+                      <span className="inline-flex items-center">
+                        {/* Qty SVG */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="mr-1 text-blue-500"
+                        >
+                          <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                          <text
+                            x="12"
+                            y="16"
+                            textAnchor="middle"
+                            fontSize="10"
+                            fill="currentColor"
+                          >
+                            #
+                          </text>
+                        </svg>
+                        Qty: {item.quantity}
                       </span>
-                      <span>Expiry: {item.expiry_date}</span>
+                      <span className="inline-flex items-center">
+                        {/* Weight SVG */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="mr-1 text-green-500"
+                        >
+                          <path
+                            d="M6 17a6 6 0 1112 0H6z"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <rect
+                            x="9"
+                            y="4"
+                            width="6"
+                            height="4"
+                            rx="1"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        {item.weightValue} {item.weightUnit}
+                      </span>
+                      <span className="inline-flex items-center">
+                        {/* Expiry SVG */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="mr-1 text-red-500"
+                        >
+                          <rect
+                            x="3"
+                            y="4"
+                            width="18"
+                            height="18"
+                            rx="2"
+                            strokeWidth="2"
+                          />
+                          <path
+                            d="M16 2v4M8 2v4M3 10h18"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                          />
+                        </svg>
+                        Expiry: {item.expiry_date}
+                      </span>
                     </div>
                     <div>
                       <small

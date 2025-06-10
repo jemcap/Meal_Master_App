@@ -7,7 +7,8 @@ export type PantryItem = {
   name: string;
   category: string;
   quantity: number;
-  unit: string;
+  weightValue: string;
+  weightUnit: string;
   expiry_date: string;
   created_at: string;
 };

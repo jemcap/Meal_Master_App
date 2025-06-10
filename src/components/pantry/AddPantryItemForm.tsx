@@ -11,7 +11,8 @@ const AddPantryItemForm = () => {
     name: "",
     category: "",
     quantity: 1,
-    unit: "Pieces",
+    weightValue: "",
+    weightUnit: "",
     expiry_date: "",
   });
 
@@ -39,7 +40,8 @@ const AddPantryItemForm = () => {
       name: "",
       category: "",
       quantity: 1,
-      unit: "",
+      weightValue: "",
+      weightUnit: "",
       expiry_date: "",
     });
   };
@@ -97,16 +99,33 @@ const AddPantryItemForm = () => {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="unit" aria-label="unit">
-            Unit
+          <label htmlFor="weightValue" aria-label="weightUnit">
+            Weight
           </label>
-          <input
-            name="unit"
-            placeholder="Unit (e.g., g, ml)"
-            value={formData.unit}
-            onChange={handleChange}
-            className="input border"
-          />
+          <div>
+            <input
+              name="weightValue"
+              placeholder="500"
+              value={formData.weightValue}
+              onChange={handleChange}
+              className="input border"
+            />
+            <select
+              name="weightUnit"
+              value={formData.weightUnit}
+              onChange={handleChange}
+              className="input border"
+            >
+              <option value="" disabled>
+                Select unit
+              </option>
+              <option value="grams">Grams</option>
+              <option value="kilograms">Kilograms</option>
+              <option value="liters">Liters</option>
+              <option value="milliliters">Milliliters</option>
+              <option value="pieces">Pieces</option>
+            </select>
+          </div>
         </div>
         <div className="flex flex-col">
           <label htmlFor="expiry_date" aria-label="Expiry Date">
@@ -122,7 +141,11 @@ const AddPantryItemForm = () => {
         </div>
       </div>
 
-      <button type="submit" disabled={isPending} className="btn-primary shadow-xl border mt-5 py-1 px-5 rounded-md">
+      <button
+        type="submit"
+        disabled={isPending}
+        className="btn-primary shadow-xl border mt-5 py-1 px-5 rounded-md"
+      >
         {isPending ? "Adding..." : "Add Item"}
       </button>
     </form>

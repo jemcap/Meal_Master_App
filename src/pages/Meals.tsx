@@ -1,5 +1,5 @@
 import SuggestMeals from '@/components/Meals/SuggestMeals'
-import React from 'react'
+
 
 const Meals = () => {
   return (
