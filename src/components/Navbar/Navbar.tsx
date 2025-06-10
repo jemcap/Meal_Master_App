@@ -39,33 +39,32 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`backdrop-blur-xs text-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
+      className={`backdrop-blur-xs border-b-1 border-gray-200 text-sm fixed top-0 z-50 w-full bg-white bg-clip-padding transition ${
         reachedThreshold ? "bg-opacity-70 shadow-2xl" : "bg-opacity-100"
       }`}
     >
       <div className="align-elements ">
         <div className="flex justify-between items-center h-full py-1">
-          <div className="shrink-0 text-black text-2xl font-bold">
+          <div className="flex justify-center items-center space-x-10">
             <NavLink to="/">
               <img src={Logo} alt="Meal Master Logo" width={50} />
             </NavLink>
+            <div className="hidden md:flex space-x-7 ">
+              <Navlinks />
+            </div>
           </div>
-          <div className="hidden md:flex space-x-6 ">
-            <Navlinks />
-          </div>
+
           <div className="hidden md:flex">
             {user ? (
-              <div id="user-info" className="flex flex-row space-x-2">
+              <div className="flex flex-row space-x-2">
                 <NavLink
                   to="/pantry"
-                  className="text-white hover:bg-orange-400  bg-orange-500 py-1 px-3 rounded-lg transition-all duration-300 hover:shadow-xl "
+                  className="text-white text-xs flex justify-center items-center hover:bg-orange-400  bg-orange-500  px-4 rounded-lg transition-all duration-300 hover:shadow-xl "
                 >
-                  My Pantry
+                  Pantry
                 </NavLink>
-                <button
-                  onClick={() => setIsOpen(!isOpen)}
-                >
-                  <FaRegUserCircle className="text-2xl" />
+                <button onClick={() => setIsOpen(!isOpen)}>
+                  <FaRegUserCircle className="text-3xl" />
                 </button>
               </div>
             ) : (
