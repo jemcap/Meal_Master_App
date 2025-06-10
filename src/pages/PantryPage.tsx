@@ -16,14 +16,11 @@ import useAuth from "../hooks/useAuth";
 import { usePantryItems } from "../hooks/usePantry";
 import AddPantryItemForm from "../components/pantry/AddPantryItemForm";
 
-import { useSelector } from "react-redux";
 
 const PantryPage = () => {
   const [expiryFilter, setExpiryFilter] = useState<
     "all" | "expiring" | "expired"
   >("all");
-  const reduxUser = useSelector((state: any) => state.auth.user);
-  console.log("Redux auth state:", reduxUser);
   const { userId } = useAuth();
   const { data, isLoading, error } = usePantryItems(userId || "");
 
@@ -134,19 +131,21 @@ const PantryPage = () => {
 
       <h1 className="text-2xl font-bold">Your Pantry</h1>
       <ul className="space-y-2">
-        {displayedData?.map((item) => (
-          <li
-            key={item.id}
-            className="p-2 border rounded-md flex justify-between"
-          >
-            <span>
-              {item.name} ({item.quantity} {item.unit})
-            </span>
-            <span className="text-sm text-gray-500">
-              Exp: {item.expiry_date}
-            </span>
-          </li>
-        ))}
+        {displayedData &&
+          displayedData?.map((item) => (
+            <li
+              key={item.id}
+              className="p-2 border rounded-md flex justify-between"
+            >
+              <span>
+                {item.name} ({item.quantity} {item.unit})
+              </span>
+              <span className="text-sm text-gray-500">
+                Exp: {item.expiry_date}
+              </span>
+            </li>
+          ))}
+        {displayedData.length === 0 && <div>No items in pantry.</div>}
       </ul>
     </div>
   );

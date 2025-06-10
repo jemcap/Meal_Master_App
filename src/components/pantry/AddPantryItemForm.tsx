@@ -11,7 +11,7 @@ const AddPantryItemForm = () => {
     name: "",
     category: "",
     quantity: 1,
-    unit: "pcs",
+    unit: "Pieces",
     expiry_date: "",
   });
 
@@ -45,51 +45,84 @@ const AddPantryItemForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 border p-4 rounded-lg shadow-md"
-    >
-      <h2 className="text-xl font-semibold">Add Pantry Item</h2>
+    <form onSubmit={handleSubmit} className="p-4 rounded-lg">
+      <h2 className="text-xl font-semibold mb-5">Add Pantry Item</h2>
+      <div className="flex flex-col gap-5">
+        <div className="flex flex-col">
+          <label htmlFor="name" aria-label="name">
+            Item Name*
+          </label>
+          <input
+            name="name"
+            placeholder="e.g., Milk, Bread, Apples"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="input border"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="category">Item Category*</label>
+          <select
+            name="category"
+            value={formData.category}
+            onChange={handleChange}
+            className="input border"
+            required
+          >
+            <option value="" disabled>
+              Select category
+            </option>
+            <option value="Grains">Grains</option>
+            <option value="Vegetables">Vegetables</option>
+            <option value="Fruits">Fruits</option>
+            <option value="Dairy">Dairy</option>
+            <option value="Meat">Meat</option>
+            <option value="Spices">Spices</option>
+            <option value="Canned">Canned</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="quantity" aria-label="Quantity">
+            Quantity
+          </label>
+          <input
+            name="quantity"
+            type="number"
+            placeholder="Quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            className="input border"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="unit" aria-label="unit">
+            Unit
+          </label>
+          <input
+            name="unit"
+            placeholder="Unit (e.g., g, ml)"
+            value={formData.unit}
+            onChange={handleChange}
+            className="input border"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label htmlFor="expiry_date" aria-label="Expiry Date">
+            Expiry Date
+          </label>
+          <input
+            name="expiry_date"
+            type="date"
+            value={formData.expiry_date}
+            onChange={handleChange}
+            className="input border"
+          />
+        </div>
+      </div>
 
-      <input
-        name="name"
-        placeholder="Item name"
-        value={formData.name}
-        onChange={handleChange}
-        required
-        className="input"
-      />
-      <input
-        name="category"
-        placeholder="Category"
-        value={formData.category}
-        onChange={handleChange}
-        className="input"
-      />
-      <input
-        name="quantity"
-        type="number"
-        placeholder="Quantity"
-        value={formData.quantity}
-        onChange={handleChange}
-        className="input"
-      />
-      <input
-        name="unit"
-        placeholder="Unit (e.g., g, ml)"
-        value={formData.unit}
-        onChange={handleChange}
-        className="input"
-      />
-      <input
-        name="expiry_date"
-        type="date"
-        value={formData.expiry_date}
-        onChange={handleChange}
-        className="input"
-      />
-
-      <button type="submit" disabled={isPending} className="btn-primary">
+      <button type="submit" disabled={isPending} className="btn-primary shadow-xl border mt-5 py-1 px-5 rounded-md">
         {isPending ? "Adding..." : "Add Item"}
       </button>
     </form>

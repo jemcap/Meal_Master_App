@@ -99,21 +99,20 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="fixed top-16 right-0 md:w-96  bg-white shadow-lg flex justify-end z-50">
           <div className="space-y-2 px-2 pt-2 pb-3 w-full">
-            <Navlinks />
             {user ? (
               <>
           <NavLink
-            to="/register"
-            className="block text-black hover:text-teal-200"
+            to="/pantry"
+            className="block text-black hover:text-orange-500"
           >
-            My account
+            My Pantry
           </NavLink>
           <button onClick={handleLogout}>Logout</button>
               </>
             ) : (
               <NavLink
           to="/login"
-          className="block text-black hover:text-teal-200"
+          className="block text-black hover:text-orange-500"
               >
           Login / Register
               </NavLink>
