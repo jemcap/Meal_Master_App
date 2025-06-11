@@ -11,6 +11,7 @@ import {
   SignUp,
   Meals,
   Protected,
+  Recipe,
 } from "../pages";
 
 export const router = createBrowserRouter([
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
         path: "/meals",
         element: <Meals />,
       },
+      {
+        path: "/meals/:id",
+        element: <Recipe />,
+      }
     ],
   },
   { path: "/login", element: <Login /> },
